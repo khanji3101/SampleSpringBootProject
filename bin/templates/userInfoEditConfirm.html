@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<script type="text/javascript" th:src="@{/js/user.js}	" ></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
+	<title>editConfirm: hello world!</title>
+</head>
+<body>
+	<p class="error" th:text="${error} != null ? 'ERROR: ' + ${error}"></p>
+	<hr class="lineBar"></hr>
+	<form name="form" method="POST" action="#" th:object="${user}">
+	<div>
+		<span>以下のユーザ情報で編集しますか？</span>
+		<table>
+			<tr>
+				<th class="inputTitle titleWidth">名前</th>
+				<td class="inputData dataWidth">
+					<span th:text="*{userName}"></span>
+				</td>
+			</tr>
+			<tr>
+				<th class="inputTitle titleWidth">性別</th>
+				<td class="inputData dataWidth">
+					<span th:if="*{userSex} == '0'" th:text="${T(com.khanji.springboot.enums.HumanSexEnum).MALE.getValue()}"></span>
+					<span th:unless="*{userSex} == '0'" th:text="${T(com.khanji.springboot.enums.HumanSexEnum).FEMALE.getValue()}"></span>
+				</td>
+			</tr>
+			<tr>
+				<th class="inputTitle titleWidth">年齢</th>
+				<td class="inputData dataWidth">
+					<span th:text="*{userAge}"></span>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<hr class="lineBar"></hr>
+	<div>
+		<input type="hidden" th:field="*{userId}" />
+		<input type="hidden" th:field="*{userName}" />
+		<input type="hidden" th:field="*{userSex}" />
+		<input type="hidden" th:field="*{userAge}" />
+		<input type="hidden" th:field="*{version}" />
+		<p>
+			<input class="inputButton" type="button" value="実行する" th:onclick="|forward('form','execEditConfirmUserInfo',[['']])|" />
+			<input class="inputButton" type="button" value="入力に戻る" th:onclick="|forward('form','initEditUserInfo',[['']])|" />
+		</p>
+		<p>
+			<input class="inputButton" type="button" value="一覧に戻る" th:onclick="|forward('form','/',[['']])|" />
+		</p>
+	</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.khanji.springboot.mapper.UserInfoMapper">
+
+  <!-- ユーザ総人数取得. -->
+  <select id="selectUserCount" resultType="Integer">
+    select
+      COUNT(*)
+    from
+      USERS;
+  </select>
+
+  <!-- ユーザ存在数取得. -->
+  <select id="selectUserInfoCountById" resultType="Integer">
+    select
+      COUNT(*)
+    from
+      USERS
+    <where>
+      USER_ID = ${userId};
+    </where>
+  </select>
+
+  <!-- ユーザ情報取得. -->
+  <select id="selectUserInfoById" resultType="com.khanji.springboot.dto.UserInfoDto">
+    select
+       USER_ID
+     , USER_NAME
+     , USER_SEX
+     , USER_AGE
+     , VERSION
+    from
+      USERS
+    <where>
+      USER_ID = ${userId};
+    </where>
+  </select>
+
+  <!-- ユーザ一覧取得. -->
+  <select id="selectUsersInfoList" resultType="com.khanji.springboot.dto.UserInfoDto">
+    select
+       USER_ID
+     , USER_NAME
+     , USER_SEX
+     , USER_AGE
+    from
+      USERS
+    order by USER_ID;
+  </select>
+
+  <!-- ユーザ情報登録. -->
+  <insert id="registUserInfo">
+    insert into
+      USERS (
+        USER_NAME
+      , USER_SEX
+      , USER_AGE
+      , INSERT_DATE
+      , VERSION
+    ) values (
+        #{form.userName}
+      , #{form.userSex}
+      , #{form.userAge}
+      , #{form.insertDate}
+      , ${form.version}
+    );
+  </insert>
+
+  <!-- ユーザ情報更新. -->
+  <update id="updateUserInfo">
+    update
+      USERS
+    set
+      USER_SEX = #{form.userSex}
+    , USER_AGE = #{form.userAge}
+    , UPDATE_DATE = #{form.updateDate}
+    , VERSION = ${form.version}
+    where
+      USER_ID = ${form.userId};
+  </update>
+
+  <!-- ユーザ情報削除. -->
+  <delete id="deleteUserInfo">
+    delete from
+      USERS
+    <where>
+      USER_ID = ${userId};
+    </where>
+  </delete>
+
+</mapper>

@@ -1,0 +1,98 @@
+/* *********************************************************************
+ * BODY AREA
+ ********************************************************************* */
+body {
+    font-family: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "sans-serif";
+    font-size: 0.875em;
+    color: #333;
+    background-color: #f0f8ff;
+}
+
+/* *********************************************************************
+ * TABLE HR AREA
+ ********************************************************************* */
+
+.lineBar {
+    border-top: 1px dashed #bbb;
+}
+
+.inputTitle {
+    padding: 0.5em 2em;
+    margin: 2em 0;
+    color: white;
+    background: #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.inputData {
+    padding: 0.5em 2em;
+    margin: 2em 0;
+    color: #5d627b;
+    background: white;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.titleWidth { width: 35px; }
+.dataWidth { width: 200px; }
+
+.textCenter { text-align: center; }
+.textLeft { text-align: left; }
+
+/* *********************************************************************
+ * INPUT AREA
+ ********************************************************************* */
+
+.inputButton {
+    padding: 0.3em 1.2em;
+    margin: 0 0.12em;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    vertical-align: middle;
+    color: #5d627b;
+    background: #f5f5f5;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.miniButton {
+    color: #5d627b;
+    background: #f5f5f5;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.inputButton:hover {
+    color: #f5f5f5;
+    background: 	#5d627b;
+}
+
+.miniButton:hover {
+    color: #f5f5f5;
+    background: 	#5d627b;
+}
+
+.textBox {
+	border-radius: 3px;
+}
+
+input[type="text"]:focus,
+texture:focus {
+    box-shadow: 0 0 7px #3498db;
+    border: 1px solid #3498db;
+}
+
+/* *********************************************************************
+ * MESSAGE AREA
+ ********************************************************************* */
+
+.error {
+	font-size: 1.1em;
+	color: #c93a40;
+	font-weight: bold;
+}
+.info {
+	font-size: 1.1em;
+	color: #0074bf;
+	font-weight: bold;
+}
+

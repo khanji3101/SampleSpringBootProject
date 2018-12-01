@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<script type="text/javascript" th:src="@{/js/user.js}	" ></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
+	<title>index: hello world!</title>
+</head>
+<body>
+	<p class="error" th:text="${error} != null ? 'ERROR: ' + ${error}"></p>
+	<p class="info" th:text="${info} != null ? 'INFO: ' + ${info}"></p>
+	<hr class="lineBar"></hr>
+	<form name="form" method="POST" action="#">
+	<div>
+		<input class="inputButton" type="button" value="新規登録" th:onclick="|forward('form','initRegistUserInfo',[['']])|" />
+	</div>
+	<hr class="lineBar"></hr>
+	<div>
+		<p>現在の登録ユーザ人数は <span th:text="${users.count}"></span> 人です。</p>
+	</div>
+	<div>
+		<table>
+			<tr>
+				<th class="inputTitle">名前</th>
+				<th class="inputTitle">性別</th>
+				<th class="inputTitle">年齢</th>
+				<th class="inputTitle">オプション</th>
+			</tr>
+			<tr th:each="user : ${users.userInfoDto}" th:object="${user}" class="hover">
+				<td class="inputData textCenter">
+					<span th:text="*{userName}"></span>
+				</td>
+				<td class="inputData textCenter">
+					<span th:if="*{userSex} == '0'" th:text="${T(com.khanji.springboot.enums.HumanSexEnum).MALE.getValue()}"></span>
+					<span th:unless="*{userSex} == '0'" th:text="${T(com.khanji.springboot.enums.HumanSexEnum).FEMALE.getValue()}"></span>
+				</td>
+				<td class="inputData textCenter">
+					<span th:text="*{userAge}"></span>
+				</td>
+				<td class="inputData textCenter">
+					<input class="miniButton" type="button" value="編集" th:onclick="|forward('form','initEditUserInfo',[['userId','*{userId}']])|" />
+					<input class="miniButton" type="button" value="削除" th:onclick="|forward('form','initDeleteConfirmUserInfo',[['userId','*{userId}']])|" />
+				</td>
+			</tr>
+		</table>
+	</div>
+</form>
+</body>
+</html>

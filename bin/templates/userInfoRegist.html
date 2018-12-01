@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<script type="text/javascript" th:src="@{/js/user.js}	" ></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/user.css}" />
+	<title>regist: hello world!</title>
+</head>
+<body>
+	<p class="error" th:text="${error} != null ? 'ERROR: ' + ${error}"></p>
+	<hr class="lineBar"></hr>
+	<form name="form" method="POST" action="#" th:object="${user}">
+	<div>
+		<table>
+			<tr>
+				<th class="inputTitle titleWidth">ID</th>
+				<td class="inputData dataWidth">
+					<span>新規発番</span>
+				</td>
+			</tr>
+			<tr>
+				<th class="inputTitle titleWidth">名前</th>
+				<td class="inputData dataWidth">
+					<input class="textBox" type="text" th:field="*{userName}" maxlength="15" size="30" />
+				</td>
+			</tr>
+			<tr>
+				<th class="inputTitle titleWidth">性別</th>
+				<td class="inputData dataWidth">
+					<span>男: </span>
+					<input type="radio" th:field="*{userSex}" value="0" />
+					<span>女: </span>
+					<input type="radio" th:field="*{userSex}" value="1" />
+				</td>
+			</tr>
+			<tr>
+				<th class="inputTitle titleWidth">年齢</th>
+				<td class="inputData dataWidth">
+					<input class="textBox" type="text" th:field="*{userAge}" maxlength="3" size="3" />
+				</td>
+			</tr>
+		</table>
+	</div>
+	<hr class="lineBar"></hr>
+	<div>
+		<p>
+			<input class="inputButton" type="button" value="登録する" th:onclick="|forward('form','registUserInfo',[['']])|" />
+		</p>
+		<p>
+			<input class="inputButton" type="button" value="一覧に戻る" th:onclick="|forward('form','/',[['']])|" />
+		</p>
+	</div>
+</form>
+</body>
+</html>
